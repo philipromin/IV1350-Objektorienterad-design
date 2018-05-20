@@ -27,14 +27,11 @@ public class SaleDTO {
 	}
 	
 	/**
-	 * Converts sale items to string.
+	 * Converts sale information, last added item and total,  to string.
 	 */
 	public String toString() {
-		StringBuilder string = new StringBuilder();
-		for (ItemDTO item : items) {
-			string.append(item + "\n");
-		}
-		return string.toString();
+		
+		return items.get(items.size()-1) + "\nRunning Total: " + total + "\n";
 	}
 	
 	/**

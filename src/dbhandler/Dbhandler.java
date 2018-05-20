@@ -1,5 +1,6 @@
 package dbhandler;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.SaleDTO;
@@ -24,14 +25,21 @@ public class Dbhandler {
 	 * Retrieves item from fictional database.
 	 * @param identifier Item identifier.
 	 * @return Item from database if found.
+	 * @throws SQLException if database failure occurs.
+	 * @throws ItemNotFoundException if item with identifier doesn't exist. 
 	 */
-	public ItemDTO findItem (int identifier) {
+	public ItemDTO findItem (int identifier) throws SQLException, ItemNotFoundException {
+		//Hardcoded database failure
+		if (identifier == 5) {
+			throw new SQLException();
+		}
+		
 		for (ItemDTO item : database ) {
 			if (item.getItemIdentifier() == identifier) {
 				return item;
 			}
 		}	
-		return null;
+		throw new ItemNotFoundException(identifier);
 	}
 	
 	/**
